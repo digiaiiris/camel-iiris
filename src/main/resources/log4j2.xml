@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration monitorInterval="10" verbose="true" name="iiris">
+    <Properties>
+		<Property name="logsAppIirisPatternLayout">{"date": "%d{yyyy-MM-dd'T'HH:mm:ss.sss'Z'}{UTC}", "type": "app-iiris", "version": 1, "id": "%enc{%X{iirisId}}{JSON}", "stateLabel": "%enc{%X{iirisStateLabel}}{JSON}"%notEmpty{, "info": "%enc{%m}{JSON}"}%notEmpty{, "correlationId": "%enc{%X{iirisCorrelationId}}{JSON}"}%notEmpty{, "externalId": "%enc{%X{iirisExternalId}}{JSON}"}%notEmpty{, "integrationName": "%enc{%X{iirisIntegrationName}}{JSON}"}%notEmpty{, "source": "%enc{%X{iirisSource}}{JSON}"}%notEmpty{, "destination": "%enc{%X{iirisDestination}}{JSON}"}%notEmpty{, "payloadOriginalFilename": "%enc{%X{iirisPayloadOriginalFileName}}{JSON}"}%notEmpty{, "appName": "%enc{$${env:APP_NAME}}{JSON}"}%notEmpty{, "appBuild": "%enc{$${env:APP_BUILD}}{JSON}"}%notEmpty{, "appCommit": "%enc{$${env:APP_COMMIT}}{JSON}"}%notEmpty{, "env": "%enc{$${env:ENV}}{JSON}"}%notEmpty{, "serverId": "%enc{%X{iirisServerId}}{JSON}"}%notEmpty{, "author": "%enc{%X{iirisAuthor}}{JSON}"}%notEmpty{, "camelContextId": "%enc{%X{camel.contextId}}{JSON}"}%notEmpty{, "camelRouteId": "%enc{%X{camel.routeId}}{JSON}"}}%n</Property>
+		<Property name="logsAppMiscPatternLayout">{"date": "%d{yyyy-MM-dd'T'HH:mm:ss.sss'Z'}{UTC}", "type": "app-misc", "version": 1, "logLevel": "%level{lowerCase=true}", "message": "%enc{%m}{JSON}"%notEmpty{, "exception": "%enc{%replace{%throwable{short}}{:(.|\n)*}{}}{JSON}"}%notEmpty{, "stackTrace": "%enc{%throwable}{JSON}"}, "meta": { "logsAppIiris": {"id": "%X{iirisId}", "correlationId": "%X{iirisCorrelationId}"}}%notEmpty{, "appName": "%enc{$${env:APP_NAME}}{JSON}"}%notEmpty{, "appBuild": "%enc{$${env:APP_BUILD}}{JSON}"}%notEmpty{, "appCommit": "%enc{$${env:APP_COMMIT}}{JSON}"}%notEmpty{, "env": "%enc{$${env:ENV}}{JSON}"}}%n</Property>
+    </Properties>
+    <Appenders>
+        <Console name="logsAppIiris" target="SYSTEM_OUT">
+            <PatternLayout pattern="${logsAppIirisPatternLayout}"/>
+        </Console>
+        <Console name="logsAppMisc" target="SYSTEM_OUT">
+            <PatternLayout pattern="${logsAppMiscPatternLayout}" alwaysWriteExceptions="false"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+    	<Logger name="com.digia.camel.component.iiris.IirisProducer" level="${env:LOG_LEVEL:-info}" additivity="false">>
+      		<AppenderRef ref="logsAppIiris"/>
+    	</Logger>
+        <Root level="${env:LOG_LEVEL:-info}">
+            <AppenderRef ref="logsAppMisc"/>
+        </Root>
+    </Loggers>
+</Configuration>
