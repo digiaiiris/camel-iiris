@@ -22,7 +22,7 @@ Valid stateLabel values are: **New**, **Processing**, **Warning**, **Failure**, 
 | destination             | iirisDestination                                  | false         | The name of the message destination |
 | externalId              | iirisExternalId                                   | false         | An external identifier (possibly contained in the message) that can be related eg. to order, project, or sales so that messages are easier to find |
 | id                      | iirisId                                           | **true**      | Unique message identifier |
-| info                    | iirisInfo                                         | false         | Additional information |
+| info                    | iirisInfo                                         | false         | Human readable log message, same as *log.info(String msg)* |
 | integrationName         | iirisIntegrationName                              | **true**      | Unique name of the integration in concern |
 | payloadOriginalFileName | iirisPayloadOriginalFileName                      | false         | Payload file name  (eg. file transferred via ftp) |
 | serverId                | iirisServerId                                     | false         | Integration server name that handled the request |
