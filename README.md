@@ -15,18 +15,18 @@ iiris:stateLabel[?options]
 
 Valid stateLabel values are: **New**, **Processing**, **Warning**, **Failure**, **Done**. Failure and Done are the only finished statuses, so that message won't be considered being stuck.
 
-| **Option**              | **Property Name (exchange, system, environment)** | **Mandatory** |
-| ----------------------- | ------------------------------------------------- | ------------- |
-| author                  | iirisAuthor                                       | false         |
-| correlationId           | iirisCorrelationId                                | false         |
-| destination             | iirisDestination                                  | false         |
-| externalId              | iirisExternalId                                   | false         |
-| id                      | iirisId                                           | **true**      |
-| info                    | iirisInfo                                         | false         |
-| integrationName         | iirisIntegrationName                              | **true**      |
-| payloadOriginalFileName | iirisPayloadOriginalFileName                      | false         |
-| serverId                | iirisServerId                                     | false         |
-| source                  | iirisSource                                       | false         |
+| **Option**              | **Property Name (exchange, system, environment)** | **Mandatory** | **Description** |
+| ----------------------- | ------------------------------------------------- | ------------- | --------------- |
+| author                  | iirisAuthor                                       | false         | Author or contact information related to the integration in case of failures |
+| correlationId           | iirisCorrelationId                                | false         | In case of hierarchical messages, this is the identifier (id) of the parent or preceding message |
+| destination             | iirisDestination                                  | false         | The name of the message destination |
+| externalId              | iirisExternalId                                   | false         | An external identifier (possibly contained in the message) that can be related eg. to order, project, or sales so that messages are easier to find |
+| id                      | iirisId                                           | **true**      | Unique message identifier |
+| info                    | iirisInfo                                         | false         | Additional information |
+| integrationName         | iirisIntegrationName                              | **true**      | Unique name of the integration in concern |
+| payloadOriginalFileName | iirisPayloadOriginalFileName                      | false         | Payload file name  (eg. file transferred via ftp) |
+| serverId                | iirisServerId                                     | false         | Integration server name that handled the request |
+| source                  | iirisSource                                       | false         | The name of  the message source |
 
 Options are resolved in the order (first match applies):
 1. option
